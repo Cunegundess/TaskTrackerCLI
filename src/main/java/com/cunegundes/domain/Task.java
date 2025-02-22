@@ -5,24 +5,22 @@ import com.cunegundes.enums.TaskStatus;
 import java.time.LocalDateTime;
 
 public class Task {
+    private static int lastId = 0;
     private final int id;
-    private final String title;
     private final String description;
     private TaskStatus status;
     private final LocalDateTime createdTime;
-    private final LocalDateTime updatedTime;
+    private LocalDateTime updatedTime;
 
-    Task(int id, String title, String description, TaskStatus status, LocalDateTime createdTime, LocalDateTime updatedTime) {
-        this.id = id;
-        this.title = title;
+    public Task(String description) {
+        this.id = ++lastId;
         this.description = description;
-        this.status = status;
-        this.createdTime = createdTime;
-        this.updatedTime = updatedTime;
+        this.status = TaskStatus.TODO;
+        this.createdTime = LocalDateTime.now();
+        this.updatedTime = LocalDateTime.now();
     }
 
     public int getId() { return id; }
-    public String getTitle() { return title; }
     public String getDescription() { return description; }
     public TaskStatus getStatus() { return status; }
     public LocalDateTime getCreatedTime() { return createdTime; }
